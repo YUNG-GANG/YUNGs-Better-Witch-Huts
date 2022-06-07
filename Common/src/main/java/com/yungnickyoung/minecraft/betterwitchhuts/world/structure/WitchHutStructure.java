@@ -1,25 +1,18 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.structure;
 
-import com.yungnickyoung.minecraft.betterwitchhuts.BetterWitchHutsCommon;
 import com.yungnickyoung.minecraft.yungsapi.api.YungJigsawConfig;
 import com.yungnickyoung.minecraft.yungsapi.api.YungJigsawManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.QuartPos;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.structure.BuiltinStructureSets;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class WitchHutStructure extends StructureFeature<YungJigsawConfig> {
     @Override

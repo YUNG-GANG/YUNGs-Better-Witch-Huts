@@ -8,5 +8,6 @@ import net.minecraft.tags.TagKey;
 public class TagModuleFabric {
     public static void init() {
         TagModule.HAS_BETTER_WITCH_HUT = TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BetterWitchHutsCommon.MOD_ID, "has_better_witch_hut"));
+        TagModule.HAS_WITCH_CIRCLE = TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BetterWitchHutsCommon.MOD_ID, "has_witch_circle"));
     }
 }

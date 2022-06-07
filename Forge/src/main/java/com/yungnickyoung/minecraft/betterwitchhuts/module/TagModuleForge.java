@@ -15,6 +15,7 @@ public class TagModuleForge {
     private static void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             TagModule.HAS_BETTER_WITCH_HUT = TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BetterWitchHutsCommon.MOD_ID, "has_better_witch_hut"));
+            TagModule.HAS_WITCH_CIRCLE = TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BetterWitchHutsCommon.MOD_ID, "has_witch_circle"));
         });
     }
 }
