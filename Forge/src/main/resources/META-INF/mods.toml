@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="LGPLv3"
+issueTrackerURL="https://github.com/yungnickyoung/YUNGs-Better-Witch-Huts/issues"
+
+[[mods]]
+	modId="betterwitchhuts"
+	version="${file.jarVersion}"
+	displayName="YUNG's Better Witch Huts"
+	credits="Thanks so much to all my patrons!"
+	authors="YUNGNICKYOUNG, Acarii"
+	description="Adds new and improved witch huts to swamps!"
+	logoFile="logo.png"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/yungs-better-witch-huts"
+
+[[dependencies.betterwitchhuts]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+
+[[dependencies.betterwitchhuts]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40.0.8,)"
+
+[[dependencies.betterwitchhuts]]
+    modId="yungsapi"
+    versionRange="[1.18.2-Forge-2.0.8,)"
+    mandatory=true
+    ordering="NONE"
+    side="BOTH"

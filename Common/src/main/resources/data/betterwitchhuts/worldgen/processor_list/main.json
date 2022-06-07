@@ -1,0 +1,22 @@
+{
+  "processors": [
+    {
+      "processor_type": "betterwitchhuts:waterlog_processor"
+    },
+    {
+      "processor_type": "betterwitchhuts:leg_processor"
+    },
+    {
+      "processor_type": "betterwitchhuts:fence_leg_processor"
+    },
+    {
+      "processor_type": "betterwitchhuts:witch_circle_processor"
+    },
+    {
+      "processor_type": "betterwitchhuts:brewing_stand_processor"
+    },
+    {
+      "processor_type": "betterwitchhuts:potted_mushroom_processor"
+    }
+  ]
+}

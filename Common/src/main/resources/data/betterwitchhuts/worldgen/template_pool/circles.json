@@ -1,0 +1,15 @@
+{
+  "name": "betterwitchhuts:circles",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "betterwitchhuts:witch_circle",
+        "processors": "betterwitchhuts:main",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.yungnickyoung.minecraft.betterwitchhuts.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "betterwitchhuts.refmap.json",
+  "mixins": [
+    "CatMixin",
+    "LocateVanillaWitchHutCommandMixin",
+    "StructureTemplateMixin",
+    "accessor.BoundingBoxAccessor",
+    "accessor.StructureProcessorAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

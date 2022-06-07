@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "betterwitchhuts",
+  "version": "${version}",
+  "name": "YUNG's Better Witch Huts",
+  "description": "Adds new and improved witch huts to swamps!",
+  "authors": [
+    "YUNGNICKYOUNG",
+    "Acarii"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/yungs-better-witch-huts-fabric",
+    "sources": "https://github.com/yungnickyoung/YUNGs-Better-Witch-Huts",
+    "issues": "https://github.com/yungnickyoung/YUNGs-Better-Witch-Huts/issues",
+    "discord": "discord.gg/rns3beq"
+  },
+  "license": "LGPLv3",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.yungnickyoung.minecraft.betterwitchhuts.BetterWitchHutsFabric"
+    ],
+    "modmenu": [
+      "com.yungnickyoung.minecraft.betterwitchhuts.config.gui.BWHModMenu"
+    ]
+  },
+  "mixins": [
+    "betterwitchhuts.mixins.json",
+    "betterwitchhuts_fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": ">=0.47.8",
+    "minecraft": ">=1.18.2",
+    "cloth-config2": ">=6.2.57",
+    "java": ">=17",
+    "yungsapi": ">=1.18.2-Fabric-2.0.8"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "betterwitchhuts:starts",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "betterwitchhuts:witch_hut_sm",
+        "processors": "betterwitchhuts:main",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "betterwitchhuts:witch_hut_lg",
+        "processors": "betterwitchhuts:main",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "betterwitchhuts:witch_hut_double",
+        "processors": "betterwitchhuts:main",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
