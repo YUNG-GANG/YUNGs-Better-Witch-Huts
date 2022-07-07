@@ -1,7 +1,7 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
 import com.mojang.serialization.Codec;
-import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorModule;
+import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -24,6 +24,6 @@ public class WaterlogProcessor extends StructureProcessor {
     }
 
     protected StructureProcessorType<?> getType() {
-        return StructureProcessorModule.WATERLOG_PROCESSOR;
+        return StructureProcessorTypeModule.WATERLOG_PROCESSOR;
     }
 }

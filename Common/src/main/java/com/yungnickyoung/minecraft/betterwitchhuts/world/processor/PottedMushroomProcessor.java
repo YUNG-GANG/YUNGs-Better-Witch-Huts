@@ -1,17 +1,16 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
 import com.mojang.serialization.Codec;
-import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorModule;
+import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
 import com.yungnickyoung.minecraft.yungsapi.world.BlockStateRandomizer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-
-import java.util.Random;
 
 public class PottedMushroomProcessor extends StructureProcessor {
     public static final PottedMushroomProcessor INSTANCE = new PottedMushroomProcessor();
@@ -33,13 +32,13 @@ public class PottedMushroomProcessor extends StructureProcessor {
                                                              StructureTemplate.StructureBlockInfo blockInfoGlobal,
                                                              StructurePlaceSettings structurePlacementData) {
         if (blockInfoGlobal.state.getBlock() == Blocks.POTTED_RED_MUSHROOM) {
-            Random random = structurePlacementData.getRandom(blockInfoGlobal.pos);
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, RANDOMIZER.get(random), null);
+            RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos);
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, RANDOMIZER.get(randomSource), null);
         }
         return blockInfoGlobal;
     }
 
     protected StructureProcessorType<?> getType() {
-        return StructureProcessorModule.POTTED_MUSHROOM_PROCESSOR;
+        return StructureProcessorTypeModule.POTTED_MUSHROOM_PROCESSOR;
     }
 }

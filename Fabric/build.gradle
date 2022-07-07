@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.10-SNAPSHOT'
+    id 'fabric-loom' version '0.12-SNAPSHOT'
     id 'idea'
 }
 
@@ -16,7 +16,6 @@ repositories {
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.officialMojangMappings()
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     modImplementation "com.yungnickyoung.minecraft.yungsapi:YungsApi:${minecraft_version}-Fabric-${yungsapi_version}"
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
@@ -27,6 +26,7 @@ dependencies {
     // ModMenu
     modImplementation ("com.terraformersmc:modmenu:${project.modmenu_version_fabric}") { transitive = false }
 
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     compileOnly project(":Common")
 }
 
@@ -38,13 +38,13 @@ loom {
             client()
             setConfigName("Fabric Client")
             ideConfigGenerated(true)
-            runDir("Fabric/run")
+            runDir("run")
         }
         server {
             server()
             setConfigName("Fabric Server")
             ideConfigGenerated(true)
-            runDir("Fabric/run")
+            runDir("run")
         }
     }
 }

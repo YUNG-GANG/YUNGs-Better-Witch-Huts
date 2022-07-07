@@ -1,7 +1,7 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
 import com.mojang.serialization.Codec;
-import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorModule;
+import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.WorldGenRegion;
@@ -47,6 +47,6 @@ public class LegProcessor extends StructureProcessor {
     }
 
     protected StructureProcessorType<?> getType() {
-        return StructureProcessorModule.LEG_PROCESSOR;
+        return StructureProcessorTypeModule.LEG_PROCESSOR;
     }
 }

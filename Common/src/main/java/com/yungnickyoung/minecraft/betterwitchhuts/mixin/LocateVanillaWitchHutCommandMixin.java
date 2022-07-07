@@ -5,11 +5,11 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.yungnickyoung.minecraft.betterwitchhuts.BetterWitchHutsCommon;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.ResourceOrTagLocationArgument;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.commands.LocateCommand;
-import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,15 +23,14 @@ import java.util.Optional;
 @Mixin(LocateCommand.class)
 public class LocateVanillaWitchHutCommandMixin {
     private static final SimpleCommandExceptionType OLD_HUT_EXCEPTION =
-        new SimpleCommandExceptionType(new TranslatableComponent("Use /locate betterwitchhuts:witch_hut instead!"));
+        new SimpleCommandExceptionType(Component.translatable("Use /locate structure betterwitchhuts:witch_hut instead!"));
 
-    @Inject(method = "locate", at = @At(value = "HEAD"))
-    private static void overrideLocateVanillaPyramid(CommandSourceStack cmdSource,
-                                                     ResourceOrTagLocationArgument.Result<ConfiguredStructureFeature<?, ?>> result,
+    @Inject(method = "locateStructure", at = @At(value = "HEAD"))
+    private static void overrideLocateVanillaWitchHut (CommandSourceStack cmdSource,
+                                                     ResourceOrTagLocationArgument.Result<Structure> result,
                                                      CallbackInfoReturnable<Integer> ci) throws CommandSyntaxException {
-        Optional<ResourceKey<ConfiguredStructureFeature<?, ?>>> optional = result.unwrap().left();
-        if (BetterWitchHutsCommon.CONFIG.general.disableVanillaWitchHuts
-                && optional.isPresent() && optional.get().location().equals(new ResourceLocation("swamp_hut"))) {
+        Optional<ResourceKey<Structure>> optional = result.unwrap().left();
+        if (BetterWitchHutsCommon.CONFIG.general.disableVanillaWitchHuts && optional.isPresent() && optional.get().location().equals(new ResourceLocation("swamp_hut"))) {
             throw OLD_HUT_EXCEPTION.create();
         }
     }
