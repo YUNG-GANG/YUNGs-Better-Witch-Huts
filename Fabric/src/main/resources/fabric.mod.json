@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "betterwitchhuts",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "YUNG's Better Witch Huts",
-  "description": "Adds new and improved witch huts to swamps!",
+  "name": "${mod_full_name}",
+  "description": "${mod_description}",
   "authors": [
     "YUNGNICKYOUNG",
     "Acarii"
@@ -35,6 +35,6 @@
     "minecraft": ">=1.19.2",
     "cloth-config2": ">=8.0.75",
     "java": ">=17",
-    "yungsapi": ">=1.19.2-Fabric-3.5.0"
+    "yungsapi": ">=${minecraft_version}-Fabric-${yungsapi_version}"
   }
 }
