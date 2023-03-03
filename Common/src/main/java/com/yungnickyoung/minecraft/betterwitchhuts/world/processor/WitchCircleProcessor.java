@@ -2,7 +2,7 @@ package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
 import com.mojang.serialization.Codec;
 import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
-import com.yungnickyoung.minecraft.yungsapi.world.BlockStateRandomizer;
+import com.yungnickyoung.minecraft.yungsapi.api.world.randomize.BlockStateRandomizer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.WorldGenRegion;

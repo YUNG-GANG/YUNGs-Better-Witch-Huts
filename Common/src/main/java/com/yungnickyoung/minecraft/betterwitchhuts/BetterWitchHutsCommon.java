@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 
 public class BetterWitchHutsCommon {
     public static final String MOD_ID = "betterwitchhuts";
-    public static final String MOD_NAME = "YUNG's Better Witch Huts";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static final ConfigModule CONFIG = new ConfigModule();
 

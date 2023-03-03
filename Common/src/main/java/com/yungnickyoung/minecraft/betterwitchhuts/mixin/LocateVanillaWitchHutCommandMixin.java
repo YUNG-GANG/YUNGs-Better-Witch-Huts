@@ -4,7 +4,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.yungnickyoung.minecraft.betterwitchhuts.BetterWitchHutsCommon;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.arguments.ResourceOrTagLocationArgument;
+import net.minecraft.commands.arguments.ResourceOrTagKeyArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +27,7 @@ public class LocateVanillaWitchHutCommandMixin {
 
     @Inject(method = "locateStructure", at = @At(value = "HEAD"))
     private static void overrideLocateVanillaWitchHut (CommandSourceStack cmdSource,
-                                                     ResourceOrTagLocationArgument.Result<Structure> result,
+                                                     ResourceOrTagKeyArgument.Result<Structure> result,
                                                      CallbackInfoReturnable<Integer> ci) throws CommandSyntaxException {
         Optional<ResourceKey<Structure>> optional = result.unwrap().left();
         if (BetterWitchHutsCommon.CONFIG.general.disableVanillaWitchHuts && optional.isPresent() && optional.get().location().equals(new ResourceLocation("swamp_hut"))) {
