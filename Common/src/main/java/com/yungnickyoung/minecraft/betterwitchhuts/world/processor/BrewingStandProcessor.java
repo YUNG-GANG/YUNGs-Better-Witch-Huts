@@ -14,6 +14,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class BrewingStandProcessor extends StructureProcessor {
     public static final BrewingStandProcessor INSTANCE = new BrewingStandProcessor();
     public static final Codec<BrewingStandProcessor> CODEC = Codec.unit(() -> INSTANCE);

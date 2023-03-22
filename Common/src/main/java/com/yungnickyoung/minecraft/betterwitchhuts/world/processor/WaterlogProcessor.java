@@ -9,6 +9,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class WaterlogProcessor extends StructureProcessor {
     public static final WaterlogProcessor INSTANCE = new WaterlogProcessor();
     public static final Codec<WaterlogProcessor> CODEC = Codec.unit(() -> INSTANCE);

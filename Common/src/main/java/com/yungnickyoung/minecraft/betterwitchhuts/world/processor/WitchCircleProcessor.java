@@ -16,6 +16,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class WitchCircleProcessor extends StructureProcessor {
     public static final WitchCircleProcessor INSTANCE = new WitchCircleProcessor();
     public static final Codec<WitchCircleProcessor> CODEC = Codec.unit(() -> INSTANCE);

@@ -14,6 +14,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class FenceLegProcessor extends StructureProcessor {
     public static final FenceLegProcessor INSTANCE = new FenceLegProcessor();
     public static final Codec<FenceLegProcessor> CODEC = Codec.unit(() -> INSTANCE);
