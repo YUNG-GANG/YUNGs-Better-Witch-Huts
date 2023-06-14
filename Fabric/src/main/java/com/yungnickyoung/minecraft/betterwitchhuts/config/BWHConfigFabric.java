@@ -4,7 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-@Config(name="betterwitchhuts-fabric-1_19_4")
+@Config(name="betterwitchhuts-fabric-1_20")
 public class BWHConfigFabric implements ConfigData {
     @ConfigEntry.Category("Better Witch Huts")
     @ConfigEntry.Gui.TransitiveObject

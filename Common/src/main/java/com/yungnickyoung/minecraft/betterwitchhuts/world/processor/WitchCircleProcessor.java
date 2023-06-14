@@ -41,21 +41,21 @@ public class WitchCircleProcessor extends StructureProcessor {
                                                              StructureTemplate.StructureBlockInfo blockInfoLocal,
                                                              StructureTemplate.StructureBlockInfo blockInfoGlobal,
                                                              StructurePlaceSettings structurePlacementData) {
-        RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos);
+        RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos());
 
-        if (blockInfoGlobal.state.getBlock() == Blocks.STONE_BRICKS) {
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, BRICKS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt);
-        } else if (blockInfoGlobal.state.getBlock() == Blocks.MOSSY_COBBLESTONE) {
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, STONE_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt);
-        } else if (blockInfoGlobal.state.getBlock() == Blocks.STONE_BRICK_STAIRS) {
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, STAIRS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt);
-        } else if (blockInfoGlobal.state.getBlock() == Blocks.GRAY_STAINED_GLASS) {
-            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(new ChunkPos(blockInfoGlobal.pos))) {
+        if (blockInfoGlobal.state().getBlock() == Blocks.STONE_BRICKS) {
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), BRICKS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
+        } else if (blockInfoGlobal.state().getBlock() == Blocks.MOSSY_COBBLESTONE) {
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), STONE_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
+        } else if (blockInfoGlobal.state().getBlock() == Blocks.STONE_BRICK_STAIRS) {
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), STAIRS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
+        } else if (blockInfoGlobal.state().getBlock() == Blocks.GRAY_STAINED_GLASS) {
+            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(new ChunkPos(blockInfoGlobal.pos()))) {
                 return blockInfoGlobal;
             }
 
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, BRICKS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt);
-            BlockPos.MutableBlockPos mutable = blockInfoGlobal.pos.mutable().move(Direction.DOWN);
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), BRICKS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
+            BlockPos.MutableBlockPos mutable = blockInfoGlobal.pos().mutable().move(Direction.DOWN);
             BlockState currBlockState = levelReader.getBlockState(mutable);
 
             while (mutable.getY() > levelReader.getMinBuildHeight()

@@ -34,9 +34,9 @@ public class PottedMushroomProcessor extends StructureProcessor {
                                                              StructureTemplate.StructureBlockInfo blockInfoLocal,
                                                              StructureTemplate.StructureBlockInfo blockInfoGlobal,
                                                              StructurePlaceSettings structurePlacementData) {
-        if (blockInfoGlobal.state.getBlock() == Blocks.POTTED_RED_MUSHROOM) {
-            RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos);
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, RANDOMIZER.get(randomSource), null);
+        if (blockInfoGlobal.state().getBlock() == Blocks.POTTED_RED_MUSHROOM) {
+            RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos());
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), RANDOMIZER.get(randomSource), null);
         }
         return blockInfoGlobal;
     }

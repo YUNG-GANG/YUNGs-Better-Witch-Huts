@@ -28,12 +28,12 @@ public class BrewingStandProcessor extends StructureProcessor {
                                                              StructureTemplate.StructureBlockInfo blockInfoLocal,
                                                              StructureTemplate.StructureBlockInfo blockInfoGlobal,
                                                              StructurePlaceSettings structurePlacementData) {
-        if (blockInfoGlobal.state.getBlock() == Blocks.BREWING_STAND) {
-            RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos);
-            CompoundTag tag = blockInfoGlobal.nbt;
+        if (blockInfoGlobal.state().getBlock() == Blocks.BREWING_STAND) {
+            RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos());
+            CompoundTag tag = blockInfoGlobal.nbt();
             ListTag itemsListTag = tag.getList("Items", 10);
             populateItemsList(itemsListTag, randomSource);
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, blockInfoGlobal.state, tag);
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), blockInfoGlobal.state(), tag);
         }
         return blockInfoGlobal;
     }

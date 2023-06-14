@@ -28,19 +28,19 @@ public class FenceLegProcessor extends StructureProcessor {
                                                              StructureTemplate.StructureBlockInfo blockInfoLocal,
                                                              StructureTemplate.StructureBlockInfo blockInfoGlobal,
                                                              StructurePlaceSettings structurePlacementData) {
-        if (blockInfoGlobal.state.getBlock() == Blocks.CRIMSON_FENCE) {
-            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(new ChunkPos(blockInfoGlobal.pos))) {
+        if (blockInfoGlobal.state().getBlock() == Blocks.CRIMSON_FENCE) {
+            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(new ChunkPos(blockInfoGlobal.pos()))) {
                 return blockInfoGlobal;
             }
 
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos, Blocks.OAK_FENCE.withPropertiesOf(blockInfoGlobal.state), blockInfoGlobal.nbt);
-            BlockPos.MutableBlockPos mutable = blockInfoGlobal.pos.mutable().move(Direction.DOWN);
+            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), Blocks.OAK_FENCE.withPropertiesOf(blockInfoGlobal.state()), blockInfoGlobal.nbt());
+            BlockPos.MutableBlockPos mutable = blockInfoGlobal.pos().mutable().move(Direction.DOWN);
             BlockState currBlockState = levelReader.getBlockState(mutable);
 
             while (mutable.getY() > levelReader.getMinBuildHeight()
                     && mutable.getY() < levelReader.getMaxBuildHeight()
                     && (currBlockState.isAir() || !levelReader.getFluidState(mutable).isEmpty())) {
-                levelReader.getChunk(mutable).setBlockState(mutable, Blocks.OAK_FENCE.withPropertiesOf(blockInfoGlobal.state), false);
+                levelReader.getChunk(mutable).setBlockState(mutable, Blocks.OAK_FENCE.withPropertiesOf(blockInfoGlobal.state()), false);
                 mutable.move(Direction.DOWN);
                 currBlockState = levelReader.getBlockState(mutable);
             }
