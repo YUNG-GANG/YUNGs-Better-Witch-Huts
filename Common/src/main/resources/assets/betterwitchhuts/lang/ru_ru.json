@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.betterwitchhuts-fabric-1_20.title": "Улучшенные хижины ведьм YUNG'а",
+  "text.autoconfig.betterwitchhuts-fabric-1_20.option.general.disableVanillaWitchHuts": "Отключить ванильные хижины ведьм",
+  "text.autoconfig.betterwitchhuts-fabric-1_20.option.general.disableVanillaWitchHuts.@Tooltip": "Должны ли быть отключены ванильные хижины ведьм.",
+
+  "Use /locate structure betterwitchhuts:witch_hut instead!": "Используйте /locate structure betterwitchhuts:witch_hut вместо этого!"
+}
