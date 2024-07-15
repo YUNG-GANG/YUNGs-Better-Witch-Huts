@@ -1,6 +1,6 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,7 +19,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class FenceLegProcessor extends StructureProcessor {
     public static final FenceLegProcessor INSTANCE = new FenceLegProcessor();
-    public static final Codec<FenceLegProcessor> CODEC = Codec.unit(() -> INSTANCE);
+    public static final MapCodec<FenceLegProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
 
     @Override
     public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader,

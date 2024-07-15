@@ -1,6 +1,6 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
 import com.yungnickyoung.minecraft.yungsapi.api.world.randomize.BlockStateRandomizer;
 import net.minecraft.core.BlockPos;
@@ -17,7 +17,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class PottedMushroomProcessor extends StructureProcessor {
     public static final PottedMushroomProcessor INSTANCE = new PottedMushroomProcessor();
-    public static final Codec<PottedMushroomProcessor> CODEC = Codec.unit(() -> INSTANCE);
+    public static final MapCodec<PottedMushroomProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
 
     private static final BlockStateRandomizer RANDOMIZER = new BlockStateRandomizer(Blocks.POTTED_RED_MUSHROOM.defaultBlockState())
             .addBlock(Blocks.POTTED_BROWN_MUSHROOM.defaultBlockState(), .2f)

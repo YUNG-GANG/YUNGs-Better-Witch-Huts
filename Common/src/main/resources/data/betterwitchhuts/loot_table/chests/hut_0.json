@@ -127,8 +127,10 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:water\"}"
+              "function": "minecraft:set_components",
+              "components": {
+                "potion_contents": "minecraft:water"
+              }
             }
           ],
           "name": "minecraft:potion"
@@ -138,8 +140,10 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:swiftness\"}"
+              "function": "minecraft:set_components",
+              "components": {
+                "potion_contents": "minecraft:swiftness"
+              }
             }
           ],
           "name": "minecraft:potion"
@@ -149,8 +153,10 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:night_vision\"}"
+              "function": "minecraft:set_components",
+              "components": {
+                "potion_contents": "minecraft:night_vision"
+              }
             }
           ],
           "name": "minecraft:potion"
@@ -160,8 +166,10 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:invisibility\"}"
+              "function": "minecraft:set_components",
+              "components": {
+                "potion_contents": "minecraft:invisibility"
+              }
             }
           ],
           "name": "minecraft:potion"
@@ -171,8 +179,10 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:weakness\"}"
+              "function": "minecraft:set_components",
+              "components": {
+                "potion_contents": "minecraft:weakness"
+              }
             }
           ],
           "name": "minecraft:splash_potion"
@@ -182,8 +192,10 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:harming\"}"
+              "function": "minecraft:set_components",
+              "components": {
+                "potion_contents": "minecraft:harming"
+              }
             }
           ],
           "name": "minecraft:splash_potion"
@@ -193,8 +205,10 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:slowness\"}"
+              "function": "minecraft:set_components",
+              "components": {
+                "potion_contents": "minecraft:slowness"
+              }
             }
           ],
           "name": "minecraft:splash_potion"

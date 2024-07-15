@@ -1,6 +1,6 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -19,7 +19,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class BrewingStandProcessor extends StructureProcessor {
     public static final BrewingStandProcessor INSTANCE = new BrewingStandProcessor();
-    public static final Codec<BrewingStandProcessor> CODEC = Codec.unit(() -> INSTANCE);
+    public static final MapCodec<BrewingStandProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
 
     @Override
     public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader,
@@ -56,29 +56,33 @@ public class BrewingStandProcessor extends StructureProcessor {
     private void addBrewingRecipe(ListTag itemsListTag, String inputItemId, String outputPotionId, RandomSource randomSource) {
         // Input item
         itemsListTag.add(Util.make(new CompoundTag(), itemTag -> {
-            putInputItem(itemTag, inputItemId, (byte) (randomSource.nextInt(4) + 2));
+            putInputItem(itemTag, inputItemId, randomSource.nextInt(4) + 2);
         }));
 
-        // Output item(s)
-        itemsListTag.add(Util.make(new CompoundTag(), itemTag -> {
-            putPotionInSlot(itemTag, (byte) 1, outputPotionId);
-            if (randomSource.nextFloat() < .5f) putPotionInSlot(itemTag, (byte) 0, outputPotionId);
-            if (randomSource.nextFloat() < .5f) putPotionInSlot(itemTag, (byte) 2, outputPotionId);
-        }));
+        // Guaranteed output item
+        itemsListTag.add(Util.make(new CompoundTag(), itemTag -> putPotionInSlot(itemTag, (byte) 1, outputPotionId)));
+
+        // Bonus output item
+        if (randomSource.nextFloat() < 0.5f) {
+            int bonusSlot = randomSource.nextBoolean() ? 0 : 2;
+            itemsListTag.add(Util.make(new CompoundTag(), itemTag -> putPotionInSlot(itemTag, (byte) bonusSlot, outputPotionId)));
+        }
     }
 
-    private void putInputItem(CompoundTag itemTag, String itemId, byte count) {
+    private void putInputItem(CompoundTag itemTag, String itemId, int count) {
         itemTag.putByte("Slot", (byte) 3);
         itemTag.putString("id", itemId);
-        itemTag.putByte("Count", count);
+        itemTag.putInt("count", count);
     }
 
     private void putPotionInSlot(CompoundTag itemTag, byte slot, String potionId) {
         itemTag.putByte("Slot", slot);
         itemTag.putString("id", "minecraft:potion");
-        itemTag.putByte("Count", (byte) 1);
-        itemTag.put("tag", Util.make(new CompoundTag(), potionTag -> {
-            potionTag.putString("Potion", potionId);
+        itemTag.putInt("count", 1);
+        itemTag.put("components", Util.make(new CompoundTag(), componentsTag -> {
+            componentsTag.put("minecraft:potion_contents", Util.make(new CompoundTag(), potionContentsTag -> {
+                potionContentsTag.putString("potion", potionId);
+            }));
         }));
     }
 }

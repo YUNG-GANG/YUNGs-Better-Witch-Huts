@@ -1,6 +1,6 @@
 package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
 import com.yungnickyoung.minecraft.yungsapi.api.world.randomize.BlockStateRandomizer;
 import net.minecraft.core.BlockPos;
@@ -21,7 +21,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class WitchCircleProcessor extends StructureProcessor {
     public static final WitchCircleProcessor INSTANCE = new WitchCircleProcessor();
-    public static final Codec<WitchCircleProcessor> CODEC = Codec.unit(() -> INSTANCE);
+    public static final MapCodec<WitchCircleProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
 
     private static final BlockStateRandomizer BRICKS_RANDOMIZER = new BlockStateRandomizer(Blocks.STONE_BRICKS.defaultBlockState())
             .addBlock(Blocks.MOSSY_STONE_BRICKS.defaultBlockState(), 0.6f)

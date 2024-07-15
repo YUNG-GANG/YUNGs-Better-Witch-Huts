@@ -1,9 +1,6 @@
 {
   "processors": [
     {
-      "processor_type": "betterwitchhuts:waterlog_processor"
-    },
-    {
       "processor_type": "betterwitchhuts:leg_processor"
     },
     {

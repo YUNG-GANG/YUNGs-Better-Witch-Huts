@@ -7,9 +7,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 
 @AutoRegister(BetterWitchHutsCommon.MOD_ID)
 public class StructureProcessorTypeModule {
-    @AutoRegister("waterlog_processor")
-    public static StructureProcessorType<WaterlogProcessor> WATERLOG_PROCESSOR = () -> WaterlogProcessor.CODEC;
-
     @AutoRegister("leg_processor")
     public static StructureProcessorType<LegProcessor> LEG_PROCESSOR = () -> LegProcessor.CODEC;
 

@@ -6,10 +6,7 @@
   "refmap": "betterwitchhuts.refmap.json",
   "mixins": [
     "DisableVanillaWitchHutsMixin",
-    "LocateVanillaWitchHutCommandMixin",
-    "StructureTemplateMixin",
-    "accessor.BoundingBoxAccessor",
-    "accessor.StructureProcessorAccessor"
+    "LocateVanillaWitchHutCommandMixin"
   ],
   "injectors": {
     "defaultRequire": 1
