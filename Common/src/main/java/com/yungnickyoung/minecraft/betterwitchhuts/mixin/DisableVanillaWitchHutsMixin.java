@@ -3,7 +3,9 @@ package com.yungnickyoung.minecraft.betterwitchhuts.mixin;
 import com.yungnickyoung.minecraft.betterwitchhuts.BetterWitchHutsCommon;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.SectionPos;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -29,6 +31,7 @@ public class DisableVanillaWitchHutsMixin {
             ChunkAccess chunkAccess,
             ChunkPos chunkPos,
             SectionPos sectionPos,
+            ResourceKey<Level> levelResourceKey,
             CallbackInfoReturnable<Boolean> cir
     ) {
         if (BetterWitchHutsCommon.CONFIG.general.disableVanillaWitchHuts && structureSetEntry.structure().value().type() == StructureType.SWAMP_HUT) {
