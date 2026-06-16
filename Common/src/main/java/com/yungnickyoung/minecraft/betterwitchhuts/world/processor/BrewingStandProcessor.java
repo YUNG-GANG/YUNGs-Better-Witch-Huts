@@ -2,7 +2,7 @@ package com.yungnickyoung.minecraft.betterwitchhuts.world.processor;
 
 import com.mojang.serialization.MapCodec;
 import com.yungnickyoung.minecraft.betterwitchhuts.module.StructureProcessorTypeModule;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -14,9 +14,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 
-@ParametersAreNonnullByDefault
+
+
 public class BrewingStandProcessor extends StructureProcessor {
     public static final BrewingStandProcessor INSTANCE = new BrewingStandProcessor();
     public static final MapCodec<BrewingStandProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
@@ -31,7 +31,7 @@ public class BrewingStandProcessor extends StructureProcessor {
         if (blockInfoGlobal.state().getBlock() == Blocks.BREWING_STAND) {
             RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos());
             CompoundTag tag = blockInfoGlobal.nbt();
-            ListTag itemsListTag = tag.getList("Items", 10);
+            ListTag itemsListTag = tag.getListOrEmpty("Items");
             populateItemsList(itemsListTag, randomSource);
             blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), blockInfoGlobal.state(), tag);
         }

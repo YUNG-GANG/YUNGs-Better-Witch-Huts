@@ -16,9 +16,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 
-@ParametersAreNonnullByDefault
+
+
 public class WitchCircleProcessor extends StructureProcessor {
     public static final WitchCircleProcessor INSTANCE = new WitchCircleProcessor();
     public static final MapCodec<WitchCircleProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
@@ -50,7 +50,7 @@ public class WitchCircleProcessor extends StructureProcessor {
         } else if (blockInfoGlobal.state().getBlock() == Blocks.STONE_BRICK_STAIRS) {
             blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), STAIRS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
         } else if (blockInfoGlobal.state().getBlock() == Blocks.GRAY_STAINED_GLASS) {
-            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(new ChunkPos(blockInfoGlobal.pos()))) {
+            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(ChunkPos.containing(blockInfoGlobal.pos()))) {
                 return blockInfoGlobal;
             }
 
@@ -61,7 +61,7 @@ public class WitchCircleProcessor extends StructureProcessor {
             while (mutable.getY() > levelReader.getMinY()
                     && mutable.getY() < levelReader.getMaxY()
                     && (currBlockState.isAir() || !levelReader.getFluidState(mutable).isEmpty())) {
-                levelReader.getChunk(mutable).setBlockState(mutable, BRICKS_RANDOMIZER.get(randomSource), false);
+                levelReader.getChunk(mutable).setBlockState(mutable, BRICKS_RANDOMIZER.get(randomSource));
                 mutable.move(Direction.DOWN);
                 currBlockState = levelReader.getBlockState(mutable);
             }
