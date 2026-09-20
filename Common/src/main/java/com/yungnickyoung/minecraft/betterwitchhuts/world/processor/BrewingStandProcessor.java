@@ -17,7 +17,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 
 
 
-public class BrewingStandProcessor extends StructureProcessor {
+public class BrewingStandProcessor implements StructureProcessor {
     public static final BrewingStandProcessor INSTANCE = new BrewingStandProcessor();
     public static final MapCodec<BrewingStandProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
 
@@ -25,20 +25,21 @@ public class BrewingStandProcessor extends StructureProcessor {
     public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader,
                                                              BlockPos jigsawPiecePos,
                                                              BlockPos jigsawPieceBottomCenterPos,
-                                                             StructureTemplate.StructureBlockInfo blockInfoLocal,
-                                                             StructureTemplate.StructureBlockInfo blockInfoGlobal,
+                                                             BlockPos pivotPos,
+                                                             StructureTemplate.StructureBlockInfo blockInfo,
                                                              StructurePlaceSettings structurePlacementData) {
-        if (blockInfoGlobal.state().getBlock() == Blocks.BREWING_STAND) {
-            RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos());
-            CompoundTag tag = blockInfoGlobal.nbt();
+        if (blockInfo.state().getBlock() == Blocks.BREWING_STAND) {
+            RandomSource randomSource = structurePlacementData.getRandom(blockInfo.pos());
+            CompoundTag tag = blockInfo.nbt();
             ListTag itemsListTag = tag.getListOrEmpty("Items");
             populateItemsList(itemsListTag, randomSource);
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), blockInfoGlobal.state(), tag);
+            blockInfo = new StructureTemplate.StructureBlockInfo(blockInfo.pos(), blockInfo.state(), tag);
         }
-        return blockInfoGlobal;
+        return blockInfo;
     }
 
-    protected StructureProcessorType<?> getType() {
+    @Override
+    public MapCodec<? extends StructureProcessor> codec() {
         return StructureProcessorTypeModule.BREWING_STAND_PROCESSOR;
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,7 +20,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 
 
 
-public class WitchCircleProcessor extends StructureProcessor {
+public class WitchCircleProcessor implements StructureProcessor {
     public static final WitchCircleProcessor INSTANCE = new WitchCircleProcessor();
     public static final MapCodec<WitchCircleProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
 
@@ -38,24 +39,24 @@ public class WitchCircleProcessor extends StructureProcessor {
     public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader,
                                                              BlockPos jigsawPiecePos,
                                                              BlockPos jigsawPieceBottomCenterPos,
-                                                             StructureTemplate.StructureBlockInfo blockInfoLocal,
-                                                             StructureTemplate.StructureBlockInfo blockInfoGlobal,
+                                                             BlockPos pivotPos,
+                                                             StructureTemplate.StructureBlockInfo blockInfo,
                                                              StructurePlaceSettings structurePlacementData) {
-        RandomSource randomSource = structurePlacementData.getRandom(blockInfoGlobal.pos());
+        RandomSource randomSource = structurePlacementData.getRandom(blockInfo.pos());
 
-        if (blockInfoGlobal.state().getBlock() == Blocks.STONE_BRICKS) {
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), BRICKS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
-        } else if (blockInfoGlobal.state().getBlock() == Blocks.MOSSY_COBBLESTONE) {
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), STONE_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
-        } else if (blockInfoGlobal.state().getBlock() == Blocks.STONE_BRICK_STAIRS) {
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), STAIRS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
-        } else if (blockInfoGlobal.state().getBlock() == Blocks.GRAY_STAINED_GLASS) {
-            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(ChunkPos.containing(blockInfoGlobal.pos()))) {
-                return blockInfoGlobal;
+        if (blockInfo.state().getBlock() == Blocks.STONE_BRICKS) {
+            blockInfo = new StructureTemplate.StructureBlockInfo(blockInfo.pos(), BRICKS_RANDOMIZER.get(randomSource), blockInfo.nbt());
+        } else if (blockInfo.state().getBlock() == Blocks.MOSSY_COBBLESTONE) {
+            blockInfo = new StructureTemplate.StructureBlockInfo(blockInfo.pos(), STONE_RANDOMIZER.get(randomSource), blockInfo.nbt());
+        } else if (blockInfo.state().getBlock() == Blocks.STONE_BRICK_STAIRS) {
+            blockInfo = new StructureTemplate.StructureBlockInfo(blockInfo.pos(), STAIRS_RANDOMIZER.get(randomSource), blockInfo.nbt());
+        } else if (blockInfo.state().getBlock() == Blocks.STAINED_GLASS.pick(DyeColor.GRAY)) {
+            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(ChunkPos.containing(blockInfo.pos()))) {
+                return blockInfo;
             }
 
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), BRICKS_RANDOMIZER.get(randomSource), blockInfoGlobal.nbt());
-            BlockPos.MutableBlockPos mutable = blockInfoGlobal.pos().mutable().move(Direction.DOWN);
+            blockInfo = new StructureTemplate.StructureBlockInfo(blockInfo.pos(), BRICKS_RANDOMIZER.get(randomSource), blockInfo.nbt());
+            BlockPos.MutableBlockPos mutable = blockInfo.pos().mutable().move(Direction.DOWN);
             BlockState currBlockState = levelReader.getBlockState(mutable);
 
             while (mutable.getY() > levelReader.getMinY()
@@ -67,10 +68,11 @@ public class WitchCircleProcessor extends StructureProcessor {
             }
         }
 
-        return blockInfoGlobal;
+        return blockInfo;
     }
 
-    protected StructureProcessorType<?> getType() {
+    @Override
+    public MapCodec<? extends StructureProcessor> codec() {
         return StructureProcessorTypeModule.WITCH_CIRCLE_PROCESSOR;
     }
 }

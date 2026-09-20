@@ -17,7 +17,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 
 
 
-public class FenceLegProcessor extends StructureProcessor {
+public class FenceLegProcessor implements StructureProcessor {
     public static final FenceLegProcessor INSTANCE = new FenceLegProcessor();
     public static final MapCodec<FenceLegProcessor> CODEC = MapCodec.unit(() -> INSTANCE);
 
@@ -25,30 +25,31 @@ public class FenceLegProcessor extends StructureProcessor {
     public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader,
                                                              BlockPos jigsawPiecePos,
                                                              BlockPos jigsawPieceBottomCenterPos,
-                                                             StructureTemplate.StructureBlockInfo blockInfoLocal,
-                                                             StructureTemplate.StructureBlockInfo blockInfoGlobal,
+                                                             BlockPos pivotPos,
+                                                             StructureTemplate.StructureBlockInfo blockInfo,
                                                              StructurePlaceSettings structurePlacementData) {
-        if (blockInfoGlobal.state().getBlock() == Blocks.CRIMSON_FENCE) {
-            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(ChunkPos.containing(blockInfoGlobal.pos()))) {
-                return blockInfoGlobal;
+        if (blockInfo.state().getBlock() == Blocks.CRIMSON_FENCE) {
+            if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(ChunkPos.containing(blockInfo.pos()))) {
+                return blockInfo;
             }
 
-            blockInfoGlobal = new StructureTemplate.StructureBlockInfo(blockInfoGlobal.pos(), Blocks.OAK_FENCE.withPropertiesOf(blockInfoGlobal.state()), blockInfoGlobal.nbt());
-            BlockPos.MutableBlockPos mutable = blockInfoGlobal.pos().mutable().move(Direction.DOWN);
+            blockInfo = new StructureTemplate.StructureBlockInfo(blockInfo.pos(), Blocks.OAK_FENCE.withPropertiesOf(blockInfo.state()), blockInfo.nbt());
+            BlockPos.MutableBlockPos mutable = blockInfo.pos().mutable().move(Direction.DOWN);
             BlockState currBlockState = levelReader.getBlockState(mutable);
 
             while (mutable.getY() > levelReader.getMinY()
                     && mutable.getY() < levelReader.getMaxY()
                     && (currBlockState.isAir() || !levelReader.getFluidState(mutable).isEmpty())) {
-                levelReader.getChunk(mutable).setBlockState(mutable, Blocks.OAK_FENCE.withPropertiesOf(blockInfoGlobal.state()));
+                levelReader.getChunk(mutable).setBlockState(mutable, Blocks.OAK_FENCE.withPropertiesOf(blockInfo.state()));
                 mutable.move(Direction.DOWN);
                 currBlockState = levelReader.getBlockState(mutable);
             }
         }
-        return blockInfoGlobal;
+        return blockInfo;
     }
 
-    protected StructureProcessorType<?> getType() {
+    @Override
+    public MapCodec<? extends StructureProcessor> codec() {
         return StructureProcessorTypeModule.FENCE_LEG_PROCESSOR;
     }
 }
